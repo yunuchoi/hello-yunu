@@ -15,6 +15,33 @@ export const Scene = () => {
 		return () => window.removeEventListener('scroll', onScroll);
 	}, []);
 
+	const handleArrowClick = () => {
+		const targetY = window.innerHeight;
+		const startY = window.scrollY;
+		const distance = targetY - startY;
+		const duration = 1500; // 1.5 seconds
+		let startTime: number | null = null;
+
+		const step = (timestamp: number) => {
+			if (!startTime) startTime = timestamp;
+			const elapsed = timestamp - startTime;
+			const progress = Math.min(elapsed / duration, 1);
+			// easeInOutCubic easing function
+			const easeInOutCubic =
+				progress < 0.5
+					? 4 * progress * progress * progress
+					: 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
+			window.scrollTo(0, startY + distance * easeInOutCubic);
+
+			if (elapsed < duration) {
+				window.requestAnimationFrame(step);
+			}
+		};
+
+		window.requestAnimationFrame(step);
+	};
+
 	const nameSpring = useSpring({
 		opacity: 1 - Math.min(scrollY / (window.innerHeight * 0.7), 1),
 		transform: `translateY(${scrollY * 0.2}px)`,
@@ -55,7 +82,7 @@ export const Scene = () => {
 				<Stars scrollY={scrollY} />
 			</Canvas>
 
-			<ScrollArrow opacity={arrowOpacity} />
+			<ScrollArrow onClick={handleArrowClick} opacity={arrowOpacity} />
 
 			<animated.div
 				style={{

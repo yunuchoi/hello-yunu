@@ -1,12 +1,14 @@
 import { Box } from '@mui/material';
 import { KeyboardArrowDown } from '@mui/icons-material';
 interface ScrollArrowProps {
+	onClick: () => void;
 	opacity: number;
 }
 
-export const ScrollArrow = ({ opacity }: ScrollArrowProps) => {
+export const ScrollArrow = ({ onClick, opacity }: ScrollArrowProps) => {
 	return (
 		<Box
+			onClick={onClick}
 			sx={{
 				position: 'fixed',
 				bottom: 32,
@@ -15,17 +17,9 @@ export const ScrollArrow = ({ opacity }: ScrollArrowProps) => {
 				zIndex: 2,
 				animation: 'bounce 2s infinite',
 				color: 'rgba(255, 255, 255, 0.7)',
-				pointerEvents: 'none',
-				opacity,
-				transition: 'opacity 0.3s ease',
-				'@keyframes bounce': {
-					'0%, 100%': {
-						transform: 'translateY(0)',
-					},
-					'50%': {
-						transform: 'translateY(-10px)',
-					},
-				},
+				pointerEvents: 'auto',
+				cursor: 'pointer',
+				opacity: opacity,
 			}}
 		>
 			<KeyboardArrowDown sx={{ fontSize: 40 }} />
