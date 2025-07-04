@@ -1,5 +1,5 @@
 import { Email, GitHub, LinkedIn } from '@mui/icons-material';
-import { Typography, Link, Box, IconButton, Stack } from '@mui/material';
+import { Typography, Link, IconButton, Stack } from '@mui/material';
 
 export const Scene4 = () => (
 	<Stack textAlign="center" color="#fff" spacing={4}>
