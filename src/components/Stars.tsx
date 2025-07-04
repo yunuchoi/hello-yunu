@@ -13,11 +13,9 @@ export const Stars = ({ scrollY }: MovingStarsProps) => {
 
 	useFrame(() => {
 		if (starsRef.current) {
-			// 아주 느린 회전
-			starsRef.current.rotation.y += 0.0000009;
-			starsRef.current.rotation.x += 0.0000009;
+			starsRef.current.rotation.y += 0.00001;
+			starsRef.current.rotation.x += 0.00001;
 
-			// 부드러운 스크롤 따라가기 (lerp 적용)
 			const desiredY = scrollY * 0.0125;
 			targetY.current = THREE.MathUtils.lerp(
 				targetY.current,
