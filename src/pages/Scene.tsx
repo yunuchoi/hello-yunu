@@ -101,9 +101,6 @@ export const Scene = () => {
 			>
 				<animated.div
 					style={{
-						backgroundColor: 'rgba(0,0,0,0.2)',
-						backdropFilter: 'blur(6px)',
-						borderRadius: '12px',
 						padding: '1rem 2rem',
 						color: '#fff',
 						fontSize: '2.5rem',
