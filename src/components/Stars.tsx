@@ -13,8 +13,8 @@ export const Stars = ({ scrollY }: MovingStarsProps) => {
 
 	useFrame(() => {
 		if (starsRef.current) {
-			starsRef.current.rotation.y += 0.00001;
-			starsRef.current.rotation.x += 0.00001;
+			starsRef.current.rotation.y += 0.000001;
+			starsRef.current.rotation.x += 0.000001;
 
 			const desiredY = scrollY * 0.0125;
 			targetY.current = THREE.MathUtils.lerp(
