@@ -11,12 +11,23 @@ import { Comets } from '../components/Comets';
 
 export const Scene = () => {
 	const [scrollY, setScrollY] = useState<number>(0);
-	const [vh, setVh] = useState<number>(window.innerHeight);
+	const [vh, _] = useState<number>(window.innerHeight);
+
+	const setVhVar = () => {
+		document.documentElement.style.setProperty(
+			'--vh',
+			`${window.innerHeight}px`
+		);
+	};
 
 	useEffect(() => {
-		const onResize = () => setVh(window.innerHeight);
-		window.addEventListener('resize', onResize);
-		return () => window.removeEventListener('resize', onResize);
+		setVhVar();
+		window.addEventListener('resize', setVhVar);
+		window.addEventListener('orientationchange', setVhVar);
+		return () => {
+			window.removeEventListener('resize', setVhVar);
+			window.removeEventListener('orientationchange', setVhVar);
+		};
 	}, []);
 
 	useEffect(() => {
@@ -161,7 +172,7 @@ export const Scene = () => {
 	return (
 		<div
 			style={{
-				height: `${totalHeight}px`,
+				height: `calc(var(--vh, 100vh) * ${totalScenes})`,
 				backgroundColor: '#000010',
 				overflowX: 'hidden',
 				position: 'relative',
@@ -173,7 +184,7 @@ export const Scene = () => {
 					top: 0,
 					left: 0,
 					width: '100vw',
-					height: '100vh',
+					height: 'var(--vh, 100vh)',
 					pointerEvents: 'none',
 					zIndex: 0,
 				}}
@@ -203,7 +214,7 @@ export const Scene = () => {
 							...springProps,
 							position: 'sticky',
 							top: 0,
-							height: '100vh',
+							height: 'var(--vh, 100vh)',
 							width: '100vw',
 							display: 'flex',
 							alignItems: 'center',
