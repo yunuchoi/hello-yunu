@@ -144,7 +144,6 @@ export const Scene = () => {
 	});
 
 	const totalScenes = 4;
-	const totalHeight = totalScenes * vh;
 
 	const currentSceneIndex = Math.floor(scrollY / vh);
 	const scrollWithinCurrentScene = scrollY % vh;
