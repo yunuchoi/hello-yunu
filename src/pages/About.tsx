@@ -1,10 +1,11 @@
 import { Avatar, Link, Stack, Typography, Box } from '@mui/material';
 import profileImage from '../assets/profile.jpeg';
+import { colors } from '../theme';
 
-export const Scene2 = () => {
+export const About = () => {
 	return (
 		<Stack
-			spacing={4}
+			spacing={{ xs: 3, sm: 6 }}
 			alignItems="center"
 			textAlign="center"
 			direction={{ xs: 'column', sm: 'row' }}
@@ -21,14 +22,16 @@ export const Scene2 = () => {
 					width: { xs: 100, sm: 120 },
 					height: { xs: 100, sm: 120 },
 					borderRadius: 2,
+					outline: `1px solid ${colors.glassBorder}`,
 				}}
 			/>
-			<Stack alignItems={{ xs: 'center', sm: 'flex-start' }}>
+			<Stack alignItems={{ xs: 'center', sm: 'flex-start' }} spacing={0.5}>
 				<Typography
 					fontFamily="Bricolage Grotesque Variable"
-					fontSize={{ xs: '2rem', sm: '2.25rem' }}
+					fontSize={{ xs: '2rem', sm: '2.5rem' }}
 					fontWeight={700}
-					color="#fff"
+					color="text.primary"
+					lineHeight={1.1}
 					sx={{ display: 'flex', alignItems: 'center', gap: 1 }}
 				>
 					I'm Yunu
@@ -55,18 +58,36 @@ export const Scene2 = () => {
 					</Box>
 				</Typography>
 				<Typography
-					fontSize={{ xs: '1rem', sm: '1.25rem' }}
-					fontFamily="Schibsted Grotesk Variable"
-					color="#fff"
+					fontSize={{ xs: '1rem', sm: '1.15rem' }}
+					color="text.secondary"
 				>
 					Software Engineer @{' '}
 					<Link
 						href="https://elementx.ai"
 						target="_blank"
 						rel="noopener noreferrer"
-						color="inherit"
-						underline="hover"
-						sx={{ fontWeight: 'bold' }}
+						sx={{
+							fontWeight: 600,
+							color: colors.gold,
+							textDecoration: 'none',
+							position: 'relative',
+							'&::after': {
+								content: '""',
+								position: 'absolute',
+								left: 0,
+								bottom: '-1px',
+								width: '100%',
+								height: '1px',
+								backgroundColor: colors.gold,
+								transform: 'scaleX(0)',
+								transformOrigin: 'left',
+								transition: 'transform 0.3s ease',
+								willChange: 'transform',
+							},
+							'&:hover::after': {
+								transform: 'scaleX(1)',
+							},
+						}}
 					>
 						ElementX
 					</Link>

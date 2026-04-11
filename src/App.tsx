@@ -1,18 +1,23 @@
-import { CssBaseline, ThemeProvider } from '@mui/material';
-import { theme } from './theme';
+import { CssBaseline, GlobalStyles, ThemeProvider } from '@mui/material';
+import { theme, colors } from './theme';
 
 import '@fontsource-variable/bricolage-grotesque';
 import '@fontsource-variable/inter';
 import '@fontsource-variable/schibsted-grotesk';
-import { Scene } from './pages/Scene';
+import { Home } from './pages/Home';
 import { Analytics } from '@vercel/analytics/react';
 
 function App() {
 	return (
 		<ThemeProvider theme={theme}>
+			<GlobalStyles
+				styles={{
+					':root': { '--space-bg': colors.spaceBg },
+				}}
+			/>
 			<Analytics />
 			<CssBaseline />
-			<Scene />
+			<Home />
 		</ThemeProvider>
 	);
 }
