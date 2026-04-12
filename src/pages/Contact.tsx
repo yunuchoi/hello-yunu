@@ -29,7 +29,7 @@ export const Contact = () => (
 				fontWeight={700}
 				color="text.primary"
 			>
-				Find me on.
+				Find me on
 			</Typography>
 		</Box>
 		<Stack direction="row" spacing={3} justifyContent="center">

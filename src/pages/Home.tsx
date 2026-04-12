@@ -15,6 +15,8 @@ export const Home = () => {
 	const [scrollY, setScrollY] = useState<number>(0);
 	const [vh, _] = useState<number>(window.innerHeight);
 	const isScrolling = useRef(false);
+	const currentScene = useRef(0);
+	const unlockTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 	const totalScenes = 4;
 
 	const setVhVar = () => {
@@ -36,9 +38,9 @@ export const Home = () => {
 
 	const goToScene = (index: number) => {
 		const clamped = Math.max(0, Math.min(totalScenes - 1, index));
+		currentScene.current = clamped;
 		window.scrollTo({ top: clamped * window.innerHeight, behavior: 'smooth' });
 		isScrolling.current = true;
-		setTimeout(() => { isScrolling.current = false; }, 900);
 	};
 
 	useEffect(() => {
@@ -46,9 +48,16 @@ export const Home = () => {
 
 		const onWheel = (e: WheelEvent) => {
 			e.preventDefault();
+			// Reset the unlock timer on every wheel event so momentum scroll
+			// events (which can fire for 1-2s after the gesture ends on macOS)
+			// don't trigger an extra page scroll.
+			if (unlockTimer.current !== null) clearTimeout(unlockTimer.current);
+			unlockTimer.current = setTimeout(() => {
+				isScrolling.current = false;
+				unlockTimer.current = null;
+			}, 100);
 			if (isScrolling.current) return;
-			const current = Math.round(window.scrollY / window.innerHeight);
-			goToScene(current + (e.deltaY > 0 ? 1 : -1));
+			goToScene(currentScene.current + (e.deltaY > 0 ? 1 : -1));
 		};
 
 		let touchStartY = 0;
@@ -58,8 +67,7 @@ export const Home = () => {
 			if (isScrolling.current) return;
 			const diff = touchStartY - e.changedTouches[0].clientY;
 			if (Math.abs(diff) < 30) return;
-			const current = Math.round(window.scrollY / window.innerHeight);
-			goToScene(current + (diff > 0 ? 1 : -1));
+			goToScene(currentScene.current + (diff > 0 ? 1 : -1));
 		};
 
 		window.addEventListener('scroll', onScroll, { passive: true });
@@ -77,8 +85,7 @@ export const Home = () => {
 	}, []);
 
 	const handleArrowClick = () => {
-		const current = Math.round(window.scrollY / window.innerHeight);
-		goToScene(current + 1);
+		goToScene(currentScene.current + 1);
 	};
 
 	const clamp = (num: number, min: number, max: number): number =>
