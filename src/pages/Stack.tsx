@@ -14,13 +14,6 @@ interface StackProps {
 }
 
 export const Stack = ({ isVisible }: StackProps) => {
-	const cometFly = keyframes`
-		from { left: -8%; opacity: 0; }
-		5%   { opacity: 1; }
-		90%  { opacity: 1; }
-		to   { left: 108%; opacity: 0; }
-	`;
-
 	const fadeIn = keyframes`
 		from { opacity: 0; }
 		to   { opacity: 1; }
@@ -63,26 +56,6 @@ export const Stack = ({ isVisible }: StackProps) => {
 
 			{/* Comet + stack items container */}
 			<Box sx={{ position: 'relative', display: 'inline-block', width: '100%' }}>
-
-				{/* DOM comet streak */}
-				{isVisible && (
-					<Box
-						sx={{
-							position: 'absolute',
-							top: '50%',
-							transform: 'translateY(-50%)',
-							width: 80,
-							height: 2,
-							borderRadius: '100px',
-							// Bright head on the right, fading tail to the left
-							background: `linear-gradient(90deg, transparent 0%, ${colors.goldGlowSoft} 40%, ${colors.comet} 100%)`,
-							boxShadow: `0 0 6px 2px ${colors.goldGlowMid}, 0 0 16px 4px ${colors.goldGlowSoft}`,
-							animation: `${cometFly} ${COMET_DURATION}s ease-in forwards`,
-							pointerEvents: 'none',
-							zIndex: 10,
-						}}
-					/>
-				)}
 
 				{/* Stack items */}
 				<Box display="flex" justifyContent="center" flexWrap="wrap" gap={2}>
