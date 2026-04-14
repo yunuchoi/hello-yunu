@@ -100,10 +100,9 @@ export const Stack = ({ isVisible }: StackProps) => {
 								className="label"
 								component="span"
 								sx={{
-									fontFamily: 'Bricolage Grotesque Variable',
-									fontSize: { xs: '1.25rem', sm: '1.4rem' },
+									fontSize: { xs: '1rem', sm: '1.25rem' },
 									fontWeight: 600,
-									color: colors.white,
+									color: "text.secondary",
 									letterSpacing: '-0.01em',
 									transition: 'color 0.3s',
 								}}
