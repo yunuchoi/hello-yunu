@@ -1,27 +1,15 @@
 import { Email, GitHub, LinkedIn } from '@mui/icons-material';
-import { Typography, Link, IconButton, Stack, Box } from '@mui/material';
+import { Typography, Link, Stack, Box } from '@mui/material';
 import { colors, glows } from '../theme';
 
-const iconButtonSx = {
-	width: '64px',
-	height: '64px',
-	borderRadius: '50%',
-	border: `1px solid ${colors.glassBorder}`,
-	backdropFilter: 'blur(4px)',
-	backgroundColor: colors.glass,
-	color: 'text.primary',
-	boxShadow: glows.white,
-	transition: 'all 0.3s ease',
-	'&:hover': {
-		boxShadow: glows.goldHover,
-		borderColor: colors.goldGlowMid,
-		color: colors.gold,
-		transform: 'translateY(-2px)',
-	},
-} as const;
+const contacts = [
+	{ label: 'Email', icon: Email, href: 'mailto:hello@yunuchoi.me' },
+	{ label: 'LinkedIn', icon: LinkedIn, href: 'https://www.linkedin.com/in/yunuchoi', target: '_blank' },
+	{ label: 'GitHub', icon: GitHub, href: 'https://www.github.com/yunuchoi', target: '_blank' },
+];
 
 export const Contact = () => (
-	<Stack textAlign="center" spacing={4}>
+	<Stack textAlign="center" spacing={2}>
 		<Box>
 			<Typography
 				fontFamily="Bricolage Grotesque Variable"
@@ -32,39 +20,27 @@ export const Contact = () => (
 				Find me on
 			</Typography>
 		</Box>
-		<Stack direction="row" spacing={3} justifyContent="center">
-			<Link
-				href="mailto:hello@yunuchoi.me"
-				underline="none"
-				sx={{
-					...iconButtonSx,
-					display: 'flex',
-					alignItems: 'center',
-					justifyContent: 'center',
-				}}
-			>
-				<Email sx={{ fontSize: 28, color: colors.white }} />
-			</Link>
-			<IconButton
-				component="a"
-				href="https://www.linkedin.com/in/yunuchoi"
-				target="_blank"
-				rel="noopener noreferrer"
-				aria-label="LinkedIn"
-				sx={iconButtonSx}
-			>
-				<LinkedIn sx={{ fontSize: 28 }} />
-			</IconButton>
-			<IconButton
-				component="a"
-				href="https://www.github.com/yunuchoi"
-				target="_blank"
-				rel="noopener noreferrer"
-				aria-label="GitHub"
-				sx={iconButtonSx}
-			>
-				<GitHub sx={{ fontSize: 28 }} />
-			</IconButton>
-		</Stack>
+		<Box display="flex" justifyContent="center" flexWrap="wrap" gap={4}>
+			{contacts.map(({ label, icon: Icon, href, target }) => (
+				<Link
+					key={label}
+					href={href}
+					target={target}
+					rel={target ? 'noopener noreferrer' : undefined}
+					aria-label={label}
+					underline="none"
+					sx={{
+						color: 'text.secondary',
+						transition: 'color 0.3s, filter 0.3s',
+						'&:hover': {
+							color: colors.gold,
+							filter: `drop-shadow(0 0 6px ${colors.goldGlowSoft}) drop-shadow(0 0 12px ${colors.goldGlowMid})`,
+						},
+					}}
+				>
+					<Icon sx={{ fontSize: 36 }} />
+				</Link>
+			))}
+		</Box>
 	</Stack>
 );
