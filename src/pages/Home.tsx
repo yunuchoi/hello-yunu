@@ -9,7 +9,6 @@ import { Stack } from './Stack';
 import { Contact } from './Contact';
 import { Comets } from '../components/Comets';
 import { Twinkle } from '../components/Twinkle';
-import { colors } from '../theme';
 
 export const Home = () => {
 	const [scrollY, setScrollY] = useState<number>(0);
@@ -139,7 +138,7 @@ export const Home = () => {
 				{/* Webkit scrollbar hide */}
 				<style>{`div::-webkit-scrollbar { display: none; }`}</style>
 
-{springs.map((spring, index) => (
+				{springs.map((spring, index) => (
 					// Static div owns all layout/snap properties so react-spring
 					// never interferes with height or flex centering
 					<div
@@ -175,7 +174,7 @@ export const Home = () => {
 				))}
 			</div>
 
-<ScrollArrow onClick={handleArrowClick} opacity={arrowOpacity} />
+			<ScrollArrow onClick={handleArrowClick} opacity={arrowOpacity} />
 		</>
 	);
 };

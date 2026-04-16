@@ -1,6 +1,6 @@
 import { Email, GitHub, LinkedIn } from '@mui/icons-material';
 import { Typography, Link, Stack, Box } from '@mui/material';
-import { colors, glows } from '../theme';
+import { colors } from '../theme';
 
 const contacts = [
 	{ label: 'Email', icon: Email, href: 'mailto:hello@yunuchoi.me' },
