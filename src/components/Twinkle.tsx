@@ -1,9 +1,17 @@
-import { useRef, useMemo } from 'react';
-import { useFrame } from '@react-three/fiber';
-import * as THREE from 'three';
-import { colors } from '../theme';
+import { useRef, useMemo } from "react";
+import { useFrame } from "@react-three/fiber";
+import * as THREE from "three";
+import { colors } from "../theme";
 
-const StarLayer = ({ count, speed, phase }: { count: number; speed: number; phase: number }) => {
+const StarLayer = ({
+	count,
+	speed,
+	phase,
+}: {
+	count: number;
+	speed: number;
+	phase: number;
+}) => {
 	const ref = useRef<THREE.Points>(null);
 
 	const geometry = useMemo(() => {
@@ -17,7 +25,7 @@ const StarLayer = ({ count, speed, phase }: { count: number; speed: number; phas
 			positions[i * 3 + 1] = r * Math.sin(phi) * Math.sin(theta);
 			positions[i * 3 + 2] = r * Math.cos(phi);
 		}
-		geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+		geo.setAttribute("position", new THREE.BufferAttribute(positions, 3));
 		return geo;
 	}, [count]);
 

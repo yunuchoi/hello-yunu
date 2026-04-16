@@ -1,8 +1,8 @@
-import { Typography, Box } from '@mui/material';
-import { keyframes } from '@emotion/react';
-import { colors, glows } from '../theme';
+import { Typography, Box } from "@mui/material";
+import { keyframes } from "@emotion/react";
+import { colors, glows } from "../theme";
 
-const techStack = ['AI', 'TypeScript', 'React', 'Express', 'Python'];
+const techStack = ["AI", "TypeScript", "React", "Express", "Python"];
 
 // How long the comet takes to cross the container
 const COMET_DURATION = 1.2; // seconds
@@ -28,37 +28,47 @@ export const Stack = ({ isVisible }: StackProps) => {
 		<Box textAlign="center" px={2}>
 			<Typography
 				fontFamily="Bricolage Grotesque Variable"
-				fontSize={{ xs: '1.75rem', sm: '2rem' }}
+				fontSize={{ xs: "1.75rem", sm: "2rem" }}
 				fontWeight={600}
 				color="text.primary"
 				mb={1}
 			>
-				I make{' '}
+				I make{" "}
 				<Typography
 					component="span"
 					sx={{
-						fontFamily: 'inherit',
-						fontSize: 'inherit',
-						fontWeight: 'inherit',
+						fontFamily: "inherit",
+						fontSize: "inherit",
+						fontWeight: "inherit",
 						color: colors.gold,
-						display: 'inline-block',
-						animation: 'magic-glow 5s infinite alternate',
-						'@keyframes magic-glow': {
-							'0%, 100%': { textShadow: glows.goldText },
-							'50%': { textShadow: glows.goldTextStrong },
+						display: "inline-block",
+						animation: "magic-glow 5s infinite alternate",
+						"@keyframes magic-glow": {
+							"0%, 100%": { textShadow: glows.goldText },
+							"50%": { textShadow: glows.goldTextStrong },
 						},
 					}}
 				>
 					magical
-				</Typography>{' '}
+				</Typography>{" "}
 				things happen with
 			</Typography>
 
 			{/* Comet + stack items container */}
-			<Box sx={{ position: 'relative', display: 'inline-block', width: '100%' }}>
-
+			<Box
+				sx={{
+					position: "relative",
+					display: "inline-block",
+					width: "100%",
+				}}
+			>
 				{/* Stack items */}
-				<Box display="flex" justifyContent="center" flexWrap="wrap" gap={2}>
+				<Box
+					display="flex"
+					justifyContent="center"
+					flexWrap="wrap"
+					gap={2}
+				>
 					{techStack.map((tech, i) => (
 						<Box
 							key={`${tech}-${isVisible}`}
@@ -66,16 +76,16 @@ export const Stack = ({ isVisible }: StackProps) => {
 							alignItems="center"
 							gap={1}
 							sx={{
-								cursor: 'default',
+								cursor: "default",
 								opacity: 0,
 								animation: isVisible
 									? `${fadeIn} 0.4s ease-out ${itemDelay(i)}s forwards`
-									: 'none',
-								'&:hover .star': {
+									: "none",
+								"&:hover .star": {
 									color: colors.gold,
 									textShadow: glows.goldText,
 								},
-								'&:hover .label': {
+								"&:hover .label": {
 									color: colors.gold,
 								},
 							}}
@@ -84,14 +94,14 @@ export const Stack = ({ isVisible }: StackProps) => {
 								className="star"
 								component="span"
 								sx={{
-									fontSize: '0.9rem',
+									fontSize: "0.9rem",
 									color: colors.gold,
 									textShadow: glows.goldText,
 									lineHeight: 1,
 									animation: isVisible
 										? `${twinkle} ${4 + i * 0.8}s ease-in-out ${i * 0.6}s infinite`
-										: 'none',
-									transition: 'color 0.3s, text-shadow 0.3s',
+										: "none",
+									transition: "color 0.3s, text-shadow 0.3s",
 								}}
 							>
 								✦
@@ -100,11 +110,11 @@ export const Stack = ({ isVisible }: StackProps) => {
 								className="label"
 								component="span"
 								sx={{
-									fontSize: { xs: '1rem', sm: '1.25rem' },
+									fontSize: { xs: "1rem", sm: "1.25rem" },
 									fontWeight: 600,
 									color: "text.secondary",
-									letterSpacing: '-0.01em',
-									transition: 'color 0.3s',
+									letterSpacing: "-0.01em",
+									transition: "color 0.3s",
 								}}
 							>
 								{tech}

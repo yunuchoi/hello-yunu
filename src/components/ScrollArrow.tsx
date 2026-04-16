@@ -1,5 +1,5 @@
-import { useSpring, animated } from '@react-spring/web';
-import { colors } from '../theme';
+import { useSpring, animated } from "@react-spring/web";
+import { colors } from "../theme";
 
 interface ScrollArrowProps {
 	onClick: () => void;
@@ -17,14 +17,16 @@ export const ScrollArrow = ({ onClick, opacity }: ScrollArrowProps) => {
 		<animated.div
 			onClick={onClick}
 			style={{
-				position: 'fixed',
-				bottom: '2rem',
-				left: '50%',
+				position: "fixed",
+				bottom: "2rem",
+				left: "50%",
 				zIndex: 2,
 				opacity: spring.opacity,
-				transform: spring.y.to((y) => `translateX(-50%) translateY(${y}px)`),
-				pointerEvents: opacity > 0 ? 'auto' : 'none',
-				cursor: opacity > 0 ? 'pointer' : 'default',
+				transform: spring.y.to(
+					(y) => `translateX(-50%) translateY(${y}px)`
+				),
+				pointerEvents: opacity > 0 ? "auto" : "none",
+				cursor: opacity > 0 ? "pointer" : "default",
 			}}
 		>
 			<svg

@@ -1,8 +1,8 @@
-import { useRef, useEffect, useState } from 'react';
-import { useFrame } from '@react-three/fiber';
-import { Sphere, Cone } from '@react-three/drei';
-import * as THREE from 'three';
-import { colors } from '../theme';
+import { useRef, useEffect, useState } from "react";
+import { useFrame } from "@react-three/fiber";
+import { Sphere, Cone } from "@react-three/drei";
+import * as THREE from "three";
+import { colors } from "../theme";
 
 interface CometProps {
 	initialDelay?: number;
@@ -13,7 +13,9 @@ export const Comets = ({ initialDelay = 0 }: CometProps) => {
 	const tailRef = useRef<THREE.Mesh>(null);
 
 	const positionRef = useRef<THREE.Vector3>(new THREE.Vector3(-8, 3, 0));
-	const directionRef = useRef<THREE.Vector3>(new THREE.Vector3(1, -0.8, 0).normalize());
+	const directionRef = useRef<THREE.Vector3>(
+		new THREE.Vector3(1, -0.8, 0).normalize()
+	);
 	const started = useRef(false);
 
 	const [isWaiting, setIsWaiting] = useState(false);
@@ -58,10 +60,13 @@ export const Comets = ({ initialDelay = 0 }: CometProps) => {
 	useEffect(() => {
 		let timeoutId: number | null = null;
 		if (isWaiting) {
-			timeoutId = window.setTimeout(() => {
-				resetComet();
-				setIsWaiting(false);
-			}, 2000 + Math.random() * 3000);
+			timeoutId = window.setTimeout(
+				() => {
+					resetComet();
+					setIsWaiting(false);
+				},
+				2000 + Math.random() * 3000
+			);
 		}
 		return () => {
 			if (timeoutId) clearTimeout(timeoutId);
@@ -105,8 +110,10 @@ export const Comets = ({ initialDelay = 0 }: CometProps) => {
 			if (!fadingOut) setFadingOut(true);
 			if (fade <= 0.01) {
 				setIsWaiting(true);
-				if (cometRef.current) cometRef.current.position.set(1000, 1000, 1000);
-				if (tailRef.current) tailRef.current.position.set(1000, 1000, 1000);
+				if (cometRef.current)
+					cometRef.current.position.set(1000, 1000, 1000);
+				if (tailRef.current)
+					tailRef.current.position.set(1000, 1000, 1000);
 			}
 		}
 	});
@@ -114,10 +121,22 @@ export const Comets = ({ initialDelay = 0 }: CometProps) => {
 	return (
 		<>
 			<Sphere ref={cometRef} args={[cometRadius, 16, 16]}>
-				<meshBasicMaterial color={colors.comet} transparent opacity={fade} />
+				<meshBasicMaterial
+					color={colors.comet}
+					transparent
+					opacity={fade}
+				/>
 			</Sphere>
-			<Cone ref={tailRef} args={[0.005, tailLength, 8]} rotation={[Math.PI / 2, 0, 0]}>
-				<meshBasicMaterial color={colors.comet} transparent opacity={fade * 0.6} />
+			<Cone
+				ref={tailRef}
+				args={[0.005, tailLength, 8]}
+				rotation={[Math.PI / 2, 0, 0]}
+			>
+				<meshBasicMaterial
+					color={colors.comet}
+					transparent
+					opacity={fade * 0.6}
+				/>
 			</Cone>
 		</>
 	);

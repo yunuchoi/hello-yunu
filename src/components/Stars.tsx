@@ -1,7 +1,7 @@
-import { useRef } from 'react';
-import { useFrame } from '@react-three/fiber';
-import { Stars as StarsProp } from '@react-three/drei';
-import * as THREE from 'three';
+import { useRef } from "react";
+import { useFrame } from "@react-three/fiber";
+import { Stars as StarsProp } from "@react-three/drei";
+import * as THREE from "three";
 
 interface MovingStarsProps {
 	scrollY: number;

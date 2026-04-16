@@ -1,11 +1,21 @@
-import { Email, GitHub, LinkedIn } from '@mui/icons-material';
-import { Typography, Link, Stack, Box } from '@mui/material';
-import { colors } from '../theme';
+import { Email, GitHub, LinkedIn } from "@mui/icons-material";
+import { Typography, Link, Stack, Box } from "@mui/material";
+import { colors } from "../theme";
 
 const contacts = [
-	{ label: 'Email', icon: Email, href: 'mailto:hello@yunuchoi.me' },
-	{ label: 'LinkedIn', icon: LinkedIn, href: 'https://www.linkedin.com/in/yunuchoi', target: '_blank' },
-	{ label: 'GitHub', icon: GitHub, href: 'https://www.github.com/yunuchoi', target: '_blank' },
+	{ label: "Email", icon: Email, href: "mailto:hello@yunuchoi.me" },
+	{
+		label: "LinkedIn",
+		icon: LinkedIn,
+		href: "https://www.linkedin.com/in/yunuchoi",
+		target: "_blank",
+	},
+	{
+		label: "GitHub",
+		icon: GitHub,
+		href: "https://www.github.com/yunuchoi",
+		target: "_blank",
+	},
 ];
 
 export const Contact = () => (
@@ -13,7 +23,7 @@ export const Contact = () => (
 		<Box>
 			<Typography
 				fontFamily="Bricolage Grotesque Variable"
-				fontSize={{ xs: '1.75rem', sm: '2rem' }}
+				fontSize={{ xs: "1.75rem", sm: "2rem" }}
 				fontWeight={700}
 				color="text.primary"
 			>
@@ -26,13 +36,13 @@ export const Contact = () => (
 					key={label}
 					href={href}
 					target={target}
-					rel={target ? 'noopener noreferrer' : undefined}
+					rel={target ? "noopener noreferrer" : undefined}
 					aria-label={label}
 					underline="none"
 					sx={{
-						color: 'text.secondary',
-						transition: 'color 0.3s, filter 0.3s',
-						'&:hover': {
+						color: "text.secondary",
+						transition: "color 0.3s, filter 0.3s",
+						"&:hover": {
 							color: colors.gold,
 							filter: `drop-shadow(0 0 6px ${colors.goldGlowSoft}) drop-shadow(0 0 12px ${colors.goldGlowMid})`,
 						},
