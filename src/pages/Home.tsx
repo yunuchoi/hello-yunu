@@ -103,7 +103,7 @@ export const Home = () => {
 					height: 'var(--vh, 100vh)',
 					pointerEvents: 'none',
 					zIndex: 0,
-					backgroundColor: colors.spaceBg,
+					background: 'linear-gradient(to bottom, #130826 0%, #0C051C 25%, #070318 50%, #050A18 100%)',
 				}}
 				camera={{ position: [0, -1.5, 7], fov: 60 }}
 			>
@@ -139,7 +139,7 @@ export const Home = () => {
 				{/* Webkit scrollbar hide */}
 				<style>{`div::-webkit-scrollbar { display: none; }`}</style>
 
-				{springs.map((spring, index) => (
+{springs.map((spring, index) => (
 					// Static div owns all layout/snap properties so react-spring
 					// never interferes with height or flex centering
 					<div
@@ -175,7 +175,7 @@ export const Home = () => {
 				))}
 			</div>
 
-			<ScrollArrow onClick={handleArrowClick} opacity={arrowOpacity} />
+<ScrollArrow onClick={handleArrowClick} opacity={arrowOpacity} />
 		</>
 	);
 };
